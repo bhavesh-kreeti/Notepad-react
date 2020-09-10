@@ -149,7 +149,7 @@ class Post extends Component {
               </div>
             </div>
           </div>
-          <div className="col-lg-8 w-md-75">
+          <div className="col-lg-8 ">
             <Posts newPost={this.state.newPost} newPostId={this.state.newPostId} notification={this.state.notification} />
           </div>
         </div>

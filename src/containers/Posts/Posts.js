@@ -6,7 +6,7 @@ import { Droppable } from 'react-beautiful-dnd'
 import { DragDropContext } from 'react-beautiful-dnd';
 import ReactNotification from 'react-notifications-component';
 import { store } from 'react-notifications-component';
-
+import  './Posts.css'
 
 class Posts extends Component {
 
@@ -186,7 +186,7 @@ class Posts extends Component {
         <div>
            {/* <ReactNotification /> */}
         <DragDropContext onDragEnd={this.onDragEnd}>
-        <div className=" posts container mx-5">
+        <div className=" posts container ">
           <Droppable droppableId='column-1'>
             {provided => 
               <div
