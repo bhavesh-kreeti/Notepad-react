@@ -39,10 +39,10 @@ class Post extends Component {
           type: "danger",
           insert: "top",
           container: "top-left",
-          animationIn: ["animated", "bounceIn"],
-          animationOut: ["animated", "bounceOut"],
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
           dismiss: {
-            duration: 2000,
+            duration: 1000,
             onScreen: true
           }
       }
@@ -65,36 +65,48 @@ class Post extends Component {
   }
 
   formSubmitHandler = (e) => {
+    console.log(e,"EEEEE")
+    const title = document.querySelector('#Title').value;
+    const desc = document.querySelector('#Description').value
+    console.log(title.length,"TITLE LENGTH")
+    console.log(desc.length,"DESC LENGTH")
     e.preventDefault();
-    const formData = {};
     let notif = {...this.state.notification}
-    for(let formElementIdentifier in this.state.notepadForm ){
-      if(this.state.notepadForm[formElementIdentifier].value.length < 5){
-        notif.message = `"${formElementIdentifier.toUpperCase()} is too short"`
-        store.addNotification(notif);
-        return
+    if(title.trim().length > 0 && desc.trim().length > 0){
+      const formData = {};
+      for(let formElementIdentifier in this.state.notepadForm ){
+        if(this.state.notepadForm[formElementIdentifier].value.trim().length < 5){
+          notif.message = `"${formElementIdentifier.toUpperCase()} is too short"`
+          store.addNotification(notif);
+          return
+        }
+        else {
+          formData[formElementIdentifier] = this.state.notepadForm[formElementIdentifier].value
+        }
       }
-      else {
-        formData[formElementIdentifier] = this.state.notepadForm[formElementIdentifier].value
-      }
-    }
-    formData.date = this.state.date
-    axios.post('/posts.json', formData).then( res => {
-      // console.log(res.config.data)
-      const title = 
-      this.setState({
-        newPost: {...formData},
-        newPostId: res.data.name
+      formData.date = this.state.date
+      axios.post('/posts.json', formData).then( res => {
+        // console.log(res.config.data)
+        this.setState({
+          newPost: {...formData},
+          newPostId: res.data.name
+        })
+        document.querySelector('#Title').value="";
+        document.querySelector('#Description').value="";
       })
-      document.querySelector('#Title').value="";
-      document.querySelector('#Description').value="";
-    })
-    .catch(er => alert(er))
-    
-    notif.title = "Posted"
-    notif.message = "Post successfully posted"
-    notif.type="success"
-    store.addNotification(notif);
+      .catch(er => alert(er))
+      
+      notif.title = "Posted"
+      notif.message = "Post successfully posted"
+      notif.type="success"
+      store.addNotification(notif);
+    }
+    else {
+      notif.title = "Required";
+      notif.message = "Inputs cannot be blank"
+      notif.type = "danger"
+      store.addNotification(notif);      
+    }
   }
 
 
@@ -109,20 +121,27 @@ class Post extends Component {
 
       return(
         <div className="row">
+          
           <ReactNotification />
-          <div className="col-4">
-          <form className="d-flex position-fixed flex-column justidy-content-center align-items-center my-4" onSubmit={this.formSubmitHandler}>
-            {inputElements.map(inputElement => (
-              <Input key= {inputElement.id}
-                     elementType = {inputElement.config.elementType}
-                     elementConfig = {inputElement.config.elementConfig} 
-                     label= {inputElement.config.elementConfig.label}  
-                     inputChange = {(e) => this.onInputChangeHandler(e,inputElement.id)} />
-              ))}
-                <button className="btn btn-outline-success mt-3">Add Note <span>✍️</span></button>
-          </form>
+          <div className="col-4 my-4 ">
+            <div className="card bg-info text-center position-fixed card-form">
+              <div className="card-body">
+                <h3 className="card-header">Notepad</h3>
+                <p className="">write your short notes <span>✍️</span> </p>
+                <form onSubmit={this.formSubmitHandler}>
+                  {inputElements.map(inputElement => (
+                        <Input key= {inputElement.id}
+                              elementType = {inputElement.config.elementType}
+                              elementConfig = {inputElement.config.elementConfig} 
+                              label= {inputElement.config.elementConfig.label}  
+                              inputChange = {(e) => this.onInputChangeHandler(e,inputElement.id)} />
+                        ))}
+                  <button className="btn btn-outline-light btn-block">Add Note <span>✍️</span></button>
+                </form>
+              </div>
+            </div>
           </div>
-          <div className="col-md-8 w-75">
+          <div className="col-8 w-75">
             <Posts newPost={this.state.newPost} newPostId={this.state.newPostId} />
           </div>
         </div>

@@ -34,27 +34,12 @@ class Post extends Component {
     deleteHandler = (id) => {
         axios.delete(`/posts/${id}.json`)
 
-        store.addNotification({
-            title: "Deleted !!!",
-            message: "Deleted the post",
-            type: "danger",
-            insert: "top",
-            container: "top-right",          
-            animationIn: ["animated", "bounceIn"],
-            animationOut: ["animated", "bounceOut"],
-            customContent: "dangerWithIcon",
-            dismiss: {
-              duration: 1500,
-              onScreen: true
-            }
-          });
           
     }
 
     render() {
         return(
             <div>
-                {/* <ReactNotification /> */}
                 <Draggable draggableId={this.props.id} index={this.props.index}>
                   {provided => (
                     <div
@@ -62,16 +47,16 @@ class Post extends Component {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     >
-                  <div className="card m-3">
-                    <div className="card-header">
+                  <div className="card text-dark border-primary my-3 w-75">
+                    <div className="card-header bg-dark text-white">
                         <h3>{this.props.title}</h3>
                     </div>
                     <div className="card-body desc" id={`${this.props.id}-desc`}>
-                        <span className="teaser"> {this.props.description.substring(0,49)} </span>
-                        <p className="complete">{this.props.description}</p>
+                        <span className="teaser card-text"> {this.props.description.substring(0,49)} </span>
+                        <p className="complete card-text">{this.props.description}</p>
                     </div>
-                    <div className="card-footer">
-                        {this.props.date}
+                    <div className="card-footer ">
+                    <span class="badge badge-pill badge-info">{this.props.date}</span>
                         <button className="show ml-5 btn btn-outline-primary" id={this.props.id} onClick={(e) => this.showHandler(e,this.props.id)}>Show</button>
                         <button className=" ml-3 btn btn-outline-danger" onClick={() => this.props.delete(this.props.id)}>Delete</button>
                     </div>

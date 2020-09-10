@@ -4,6 +4,8 @@ import Post from './Post/Post'
 import $ from "jquery"
 import { Droppable } from 'react-beautiful-dnd'
 import { DragDropContext } from 'react-beautiful-dnd';
+import ReactNotification from 'react-notifications-component';
+import { store } from 'react-notifications-component';
 
 
 class Posts extends Component {
@@ -17,7 +19,20 @@ class Posts extends Component {
             postIds: []
           }
         },
-      columnOrder: [ 'column-1']
+      columnOrder: [ 'column-1'],
+      notification: {
+        title: "Deleted",
+          message:  "Post successfully deleted",
+          type: "danger",
+          insert: "top",
+          container: "top-left",
+          animationIn: ["animated", "bounceIn"],
+          animationOut: ["animated", "bounceOut"],
+          dismiss: {
+            duration: 1000,
+            onScreen: true
+          }
+      }
   }
 
   componentDidMount = () => {
@@ -144,7 +159,7 @@ class Posts extends Component {
       }
     })
     
-      
+    store.addNotification(this.state.notification)
   }
 
   render() {
@@ -175,6 +190,8 @@ class Posts extends Component {
       // if(this.props.)
       
       return(
+        <div>
+           {/* <ReactNotification /> */}
         <DragDropContext onDragEnd={this.onDragEnd}>
         <div className=" posts container mx-5">
           <Droppable droppableId='column-1'>
@@ -195,6 +212,7 @@ class Posts extends Component {
           </Droppable>
         </div>
         </DragDropContext>
+        </div>
 
       )
     }
