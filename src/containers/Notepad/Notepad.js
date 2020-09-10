@@ -27,7 +27,7 @@ class Post extends Component {
                   label: "Description",
                   rows: "5",
                   cols: "25",
-                  placeholder: "Enter the description"
+                  placeholder: "Enter Description"
               },
               value: ''
           }
@@ -120,11 +120,10 @@ class Post extends Component {
       }
 
       return(
-        <div className="row">
-          
+        <div className="row m-3 border shadow-md p-3 mb-5 bg-white rounded bg-dark  rounded">
           <ReactNotification />
-          <div className="col-4 my-4 ">
-            <div className="card bg-info text-center position-fixed card-form">
+          <div className="col-lg-4 my-4 ">
+            <div className="card bg-info text-center card-form">
               <div className="card-body">
                 <h3 className="card-header">Notepad</h3>
                 <p className="">write your short notes <span>✍️</span> </p>
@@ -141,7 +140,7 @@ class Post extends Component {
               </div>
             </div>
           </div>
-          <div className="col-8 w-75">
+          <div className="col-lg-8 w-md-75">
             <Posts newPost={this.state.newPost} newPostId={this.state.newPostId} notification={this.state.notification} />
           </div>
         </div>
