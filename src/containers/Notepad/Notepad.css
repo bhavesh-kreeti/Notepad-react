@@ -1,7 +1,6 @@
-.Input {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 12px;
+@media(min-width: 1200px){
+    .Form {
+        position: fixed;
+
+    }
 }

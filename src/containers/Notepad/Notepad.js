@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classes from './Notepad.css'
 import Input from '../../components/Input/Input'; 
 import axios from '../../axios-posts';
 import Posts from  '../Posts/Posts';
@@ -46,6 +47,14 @@ class Post extends Component {
             onScreen: true
           }
       }
+  }
+  componentDidMount = () => {
+    let notif = {...this.state.notification}
+    notif.title = "Hello !!";
+    notif.message = "Welcome to this application"
+    notif.type = "success"
+    notif.dismiss.duration = 3000
+    store.addNotification(notif);    
   }
 
   onInputChangeHandler = (e,inputIdentifier) => {
@@ -120,10 +129,10 @@ class Post extends Component {
       }
 
       return(
-        <div className="row m-3 border shadow-md p-3 mb-5 bg-white rounded bg-dark  rounded">
+        <div className="row m-3 border shadow-lg p-3 mb-5 bg-white rounded bg-dark  rounded">
           <ReactNotification />
           <div className="col-lg-4 my-4 ">
-            <div className="card bg-info text-center card-form">
+            <div className="card bg-info text-center Form card-form">
               <div className="card-body">
                 <h3 className="card-header">Notepad</h3>
                 <p className="">write your short notes <span>✍️</span> </p>
