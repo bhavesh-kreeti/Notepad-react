@@ -5,7 +5,7 @@ import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import { store } from 'react-notifications-component';
 import { Draggable } from 'react-beautiful-dnd'
-
+import classes from './Post.css'
 
 class Post extends Component {
 
@@ -30,7 +30,7 @@ class Post extends Component {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     >
-                  <div className="card text-dark border-primary my-3 w-75">
+                  <div className="card text-dark border-primary my-3 post">
                     <div className="card-header bg-dark text-white">
                         <h3>{this.props.title}</h3>
                     </div>
