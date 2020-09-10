@@ -20,6 +20,7 @@ class Post extends Component {
     }
 
     render() {
+        
         return(
             <div>
                 <Draggable draggableId={this.props.id} index={this.props.index}>
@@ -34,7 +35,7 @@ class Post extends Component {
                         <h3>{this.props.title}</h3>
                     </div>
                     <div className="card-body desc" id={`${this.props.id}-desc`}>
-                        <span className="teaser card-text"> {this.props.description.substring(0,49)} </span>
+                        <span className="teaser card-text"> {this.props.description.substring(0,49)} {this.props.description.length > 49 ? "...." : null} </span>
                         <p className="complete card-text">{this.props.description}</p>
                     </div>
                     <div className="card-footer">
