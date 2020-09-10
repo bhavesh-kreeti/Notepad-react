@@ -54,7 +54,7 @@ class Post extends Component {
     render() {
         return(
             <div>
-                <ReactNotification />
+                {/* <ReactNotification /> */}
                 <Draggable draggableId={this.props.id} index={this.props.index}>
                   {provided => (
                     <div

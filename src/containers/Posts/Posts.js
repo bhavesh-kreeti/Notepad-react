@@ -47,13 +47,21 @@ class Posts extends Component {
 
   componentDidUpdate = () => {
     let check = null
-    for(let key in this.state.posts){
-      if((`${this.props.newPostId}` == key) || (this.props.newPostId == null)){
-        check = false;
-        break;
-      }
-      else {
-        check = true
+    if(Object.keys(this.state.posts).length === 0 &&
+       this.state.posts.constructor === Object &&
+       this.props.newPostId !== null
+      ){
+      check = true;
+    }
+    else {
+      for(let key in this.state.posts){
+        if((`${this.props.newPostId}` == key) || (this.props.newPostId == null)){
+          check = false;
+          break;
+        }
+        else {
+          check = true
+        }
       }
     }
     if(check){
@@ -141,6 +149,7 @@ class Posts extends Component {
 
   render() {
     console.log(this.props.newPostId,"NEWPOSTID")
+    console.log(this.state.posts,"MY POST")
     let test = null
     for(let key in this.state.posts){
       if(`${this.props.newPostId}` == key){

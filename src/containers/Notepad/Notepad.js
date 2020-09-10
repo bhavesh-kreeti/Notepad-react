@@ -110,7 +110,8 @@ class Post extends Component {
       return(
         <div className="row">
           <ReactNotification />
-          <form className="d-flex flex-column justidy-content-center align-items-center col-md-4 my-4" onSubmit={this.formSubmitHandler}>
+          <div className="col-4">
+          <form className="d-flex position-fixed flex-column justidy-content-center align-items-center my-4" onSubmit={this.formSubmitHandler}>
             {inputElements.map(inputElement => (
               <Input key= {inputElement.id}
                      elementType = {inputElement.config.elementType}
@@ -120,6 +121,7 @@ class Post extends Component {
               ))}
                 <button className="btn btn-outline-success mt-3">Add Note <span>✍️</span></button>
           </form>
+          </div>
           <div className="col-md-8 w-75">
             <Posts newPost={this.state.newPost} newPostId={this.state.newPostId} />
           </div>
