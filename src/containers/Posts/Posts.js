@@ -20,19 +20,7 @@ class Posts extends Component {
           }
         },
       columnOrder: [ 'column-1'],
-      notification: {
-        title: "Deleted",
-          message:  "Post successfully deleted",
-          type: "danger",
-          insert: "top",
-          container: "top-left",
-          animationIn: ["animated", "bounceIn"],
-          animationOut: ["animated", "bounceOut"],
-          dismiss: {
-            duration: 1000,
-            onScreen: true
-          }
-      }
+      notification: this.props.notification
   }
 
   componentDidMount = () => {
@@ -158,6 +146,11 @@ class Posts extends Component {
         }
       }
     })
+    const notif = {...this.state.notification}
+      notif.title = "Deleted  "
+      notif.message = "Post successfully deleted  "
+      notif.type="danger"
+      store.addNotification(notif);
     
     store.addNotification(this.state.notification)
   }

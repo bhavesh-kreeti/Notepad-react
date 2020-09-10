@@ -11,18 +11,8 @@ class Post extends Component {
 
  
     showHandler = (e,id) => {
-        if ($('#' + id + '-desc > span').css('display') != "none")
-        {
-            $('#' + id + '-desc > span').stop().hide(500)
-            $('#' + id + '-desc > p').stop().slideToggle(500)
-        }
-        else{
-            $('#' + id + '-desc > p').stop().hide(500)
-            $('#' + id + '-desc > span').stop().slideToggle(500)
-
-        }
-        
-          
+        $('#' + id + '-desc > span').stop().slideToggle(1000)
+        $('#' + id + '-desc > p').stop().slideToggle(600)
     }
 
     componentDidMount = () => {
