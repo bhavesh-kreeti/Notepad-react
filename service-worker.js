@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Notepad-react/precache-manifest.0844061eb15577fab74ca6f20adc1754.js"
+  "/Notepad-react/precache-manifest.40f2af9763cd5842230dfb1beadc1d7f.js"
 );
 
 self.addEventListener('message', (event) => {
