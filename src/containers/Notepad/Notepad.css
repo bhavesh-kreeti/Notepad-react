@@ -1,5 +1,10 @@
+.height-fix {
+  height: 100vh;
+  min-height: 800px;
+}
+
 @media(min-width: 1200px){
-    .Form {
-        position: fixed;
-    }
+  .Form {
+    position: fixed;
+  }
 }

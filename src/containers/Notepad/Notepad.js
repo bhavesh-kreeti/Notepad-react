@@ -128,7 +128,7 @@ class Post extends Component {
     }
 
     return(
-      <div className="row m-3 border shadow-lg p-3 mb-5 bg-white rounded bg-dark rounded">
+      <div className="row m-3 border shadow-lg p-3 height-fix mb-5 bg-white rounded bg-dark rounded">
         <ReactNotification />
         <div className="col-lg-4 my-4 ">
           <div className="card bg-info text-center Form card-form">

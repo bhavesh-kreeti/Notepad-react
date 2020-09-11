@@ -31,13 +31,21 @@ class Post extends Component {
                   <h3>{this.props.title}</h3>
                 </div>
                 <div className="card-body desc" id={`${this.props.id}-desc`}>
-                  <span className="teaser card-text"> {this.props.description.substring(0,49)} {this.props.description.length > 49 ? "...." : null} </span>
+                  <span className="teaser card-text"> {this.props.description.substring(0,49)}
+                                                      {this.props.description.length > 49 ? "...." : null}
+                  </span>
                   <p className="complete card-text">{this.props.description}</p>
                 </div>
                 <div className="card-footer">
                   <span className="badge my-3 d-block d-lg-inline badge-pill badge-info">{this.props.date}</span>
-                  <button className="show  ml-lg-5 btn  d-lg-inline btn-outline-primary" id={this.props.id} onClick={(e) => this.showHandler(e,this.props.id)}>Show</button>
-                  <button className=" ml-lg-3  btn ml-1 d-inline d-lg-inline btn-outline-danger" onClick={() => this.props.delete(this.props.id)}>Delete</button>
+                  <button className="show  ml-lg-5 btn  d-lg-inline btn-outline-primary"
+                    id={this.props.id} onClick={(e) => this.showHandler(e,this.props.id)}>
+                    Show
+                  </button>
+                  <button className=" ml-lg-3  btn ml-1 d-inline d-lg-inline btn-outline-danger"
+                    onClick={() => this.props.delete(this.props.id)}>
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>
