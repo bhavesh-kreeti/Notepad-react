@@ -151,9 +151,7 @@ class Posts extends Component {
       notif.message = "Post successfully deleted  "
       notif.type="danger"
       store.addNotification(notif);
-    
-    store.addNotification(this.state.notification)
-  }
+    }
 
   render() {
     console.log(this.props.newPostId,"NEWPOSTID")
