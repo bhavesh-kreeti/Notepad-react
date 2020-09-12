@@ -118,6 +118,12 @@ class Post extends Component {
     }
   }
 
+  resetNewPostId = () => {
+    this.setState({
+      newPostId: null
+    })
+  }
+
   render() {
     const inputElements = [];
     for(let key in this.state.notepadForm ){
@@ -149,7 +155,10 @@ class Post extends Component {
           </div>
         </div>
         <div className="col-lg-8 ">
-          <Posts newPost={this.state.newPost} newPostId={this.state.newPostId} notification={this.state.notification} />
+          <Posts newPost={this.state.newPost} newPostId={this.state.newPostId}
+                 notification={this.state.notification}
+                 resetPostId = {this.resetNewPostId}
+                />
         </div>
       </div>
     )

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import axios from '../../axios-posts'
 import Post from './Post/Post'
 import { Droppable } from 'react-beautiful-dnd'
@@ -6,7 +6,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { store } from 'react-notifications-component';
 import  './Posts.css'
 
-class Posts extends Component {
+class Posts extends PureComponent {
 
   state = {
     posts: null,
@@ -45,20 +45,24 @@ class Posts extends Component {
   }
 
   componentDidUpdate = () => {
+    console.log("UP")
     let check = null
     if(Object.keys(this.state.posts).length === 0 &&
       this.state.posts.constructor === Object &&
       this.props.newPostId !== null
       ){
+        console.log("TT")
       check = true;
     }
     else {
       for(let key in this.state.posts){
         if((`${this.props.newPostId}` == key) || (this.props.newPostId == null)){
+          console.log("THIS")
           check = false;
           break;
         }
         else {
+          console.log("THAT")
           check = true
         }
       }
@@ -129,7 +133,7 @@ class Posts extends Component {
       const index = this.state.columns["column-1"].postIds.indexOf(id)
       updatedpost.columns["column-1"].postIds.splice(index,1)
       delete updatedpost.posts[id]
-  
+      
       this.setState({
         posts: updatedpost.posts,
         columns: {
@@ -137,8 +141,9 @@ class Posts extends Component {
             postIds: updatedpost.columns["column-1"].postIds
           }
         }
+      })
     })
-    })
+    this.props.resetPostId()
     const notif = {...this.state.notification}
       notif.title = "Deleted  "
       notif.message = "Post successfully deleted  "
