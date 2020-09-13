@@ -17,6 +17,7 @@ class Post extends Component {
   }
 
   render() {        
+    console.log("POST")
     return(
       <div>
         <Draggable draggableId={this.props.id} index={this.props.index}>
